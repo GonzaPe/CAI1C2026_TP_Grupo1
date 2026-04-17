@@ -1,2 +1,32 @@
 # CAI1C2026_TP_Grupo1
-Trabajo práctico de Arquitectura de Microservicios
+Trabajo práctico de Construcción de Aplicaciones Informáticas.
+Correo de contacto: cai1c2026grupo1@gmail.com
+
+##Integrantes
+- Camila Albornoz
+- Gonzalo Pérez
+- Karen Gutierrez
+
+##Estructura
+- src/: microservicios
+- docs/: documentación, diagrama y capturas
+
+ECommerce.sln
+├── src/
+│   ├── Products.API/
+│   ├── Users.API/
+│   ├── Orders.API/
+│   ├── Cart.API/
+│   └── Notifications.API/
+├── docs/
+└── README.md
+
+Products.API/
+  ├── Controllers/
+  ├── Models/              # Entidades del dominio
+  ├── DTOs/                # Request y Response DTOs
+  ├── Services/            # Lógica de negocio
+  ├── Exceptions/          # NotFoundException, BusinessRuleException, etc.
+  ├── ExceptionHandlers/   # IExceptionHandler por tipo de excepción
+  ├── logs/                # Archivos de log de Serilog
+  └── Program.cs
