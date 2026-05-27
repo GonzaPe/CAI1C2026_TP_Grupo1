@@ -1,15 +1,23 @@
+using Products.API.ExceptionHandlers;
+using Products.API.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
+builder.Services.AddExceptionHandler<BusinessRuleExceptionHandler>();
+
+builder.Services.AddSingleton<IProductService, ProductService>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -18,8 +26,29 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.MapControllers();
 
+app.MapGet("/health", () => Results.Ok(new
+{
+    status = "Healthy",
+    service = "Products.API"
+}));
+
+app.MapGet("/health/ready", () => Results.Ok(new
+{
+    status = "Healthy",
+    service = "Products.API",
+    check = "ready"
+}));
+
+app.MapGet("/health/live", () => Results.Ok(new
+{
+    status = "Healthy",
+    service = "Products.API",
+    check = "live"
+}));
+
 app.Run();
+
+
+
