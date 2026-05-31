@@ -23,8 +23,8 @@ public class ProductosController : ControllerBase
         return Ok(productos);
     }
 
-    [HttpGet("{id:guid}")]
-    public ActionResult<RespuestaProducto> ObtenerPorId(Guid id)
+    [HttpGet("{id}")]
+    public ActionResult<RespuestaProducto> ObtenerPorId(string id)
     {
         RespuestaProducto? producto = _productoServicio.ObtenerPorId(id);
 

@@ -41,7 +41,7 @@ public class ProductoRepositorio : IProductoRepositorio
         return conexion.Query<Producto>(consulta);
     }
 
-    public Producto? ObtenerPorId(Guid id)
+    public Producto? ObtenerPorId(string id)
     {
         using var conexion = CrearConexion();
 
@@ -60,7 +60,7 @@ public class ProductoRepositorio : IProductoRepositorio
 
         return conexion.QuerySingleOrDefault<Producto>(consulta, new
         {
-            Id = id.ToString()
+            Id = id
         });
     }
 
@@ -111,7 +111,7 @@ public class ProductoRepositorio : IProductoRepositorio
 
         conexion.Execute(sentencia, new
         {
-            Id = producto.Id.ToString(),
+            producto.Id,
             producto.Nombre,
             producto.Descripcion,
             producto.Precio,

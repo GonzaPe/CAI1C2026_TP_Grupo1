@@ -6,7 +6,7 @@ public interface IProductoRepositorio
 {
     IEnumerable<Producto> ObtenerTodos();
 
-    Producto? ObtenerPorId(Guid id);
+    Producto? ObtenerPorId(string id);
 
     bool ExisteProductoConNombreYCategoria(string nombre, string categoria);
 

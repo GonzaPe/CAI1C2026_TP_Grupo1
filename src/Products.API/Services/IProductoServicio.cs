@@ -6,7 +6,7 @@ public interface IProductoServicio
 {
     IEnumerable<RespuestaProducto> ObtenerTodos();
 
-    RespuestaProducto? ObtenerPorId(Guid id);
+    RespuestaProducto? ObtenerPorId(string id);
 
     RespuestaProducto? Crear(SolicitudCrearProducto solicitud, out string? mensajeError);
 }

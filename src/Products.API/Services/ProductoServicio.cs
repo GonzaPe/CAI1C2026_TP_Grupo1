@@ -27,7 +27,7 @@ public class ProductoServicio : IProductoServicio
         return respuestas;
     }
 
-    public RespuestaProducto? ObtenerPorId(Guid id)
+    public RespuestaProducto? ObtenerPorId(string id)
     {
         Producto? producto = _productoRepositorio.ObtenerPorId(id);
 
@@ -79,7 +79,7 @@ public class ProductoServicio : IProductoServicio
 
         var producto = new Producto
         {
-            Id = Guid.NewGuid(),
+            Id = Guid.NewGuid().ToString(),
             Nombre = solicitud.Nombre,
             Descripcion = solicitud.Descripcion,
             Precio = solicitud.Precio,
