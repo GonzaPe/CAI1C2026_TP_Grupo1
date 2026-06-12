@@ -1,6 +1,50 @@
-@Orders.API_HostAddress = http://localhost:5109
+@Orders.API_HostAddress = http://localhost:5224
 
-GET {{Orders.API_HostAddress}}/weatherforecast/
+# Health checks
+GET {{Orders.API_HostAddress}}/health
 Accept: application/json
 
 ###
+
+GET {{Orders.API_HostAddress}}/health/ready
+Accept: application/json
+
+###
+
+GET {{Orders.API_HostAddress}}/health/live
+Accept: application/json
+
+###
+
+# Listado de ordenes
+GET {{Orders.API_HostAddress}}/api/orders
+Accept: application/json
+
+###
+
+# Orden seed
+GET {{Orders.API_HostAddress}}/api/orders/11112222-3333-4444-5555-666677778888
+Accept: application/json
+
+###
+
+# Crear orden.
+# Requiere Products.API levantada. Si se habilita validacion de usuarios, tambien requiere Users.API.
+POST {{Orders.API_HostAddress}}/api/orders
+Content-Type: application/json
+
+{
+  "usuarioId": "a1b2c3d4-0000-0000-0000-111122223333",
+  "items": [
+    {
+      "productoId": "aaaabbbb-cccc-dddd-eeee-ffff00001111",
+      "cantidad": 1
+    }
+  ]
+}
+
+###
+
+# Prueba de error esperada: orden inexistente -> 404 ORD-001
+GET {{Orders.API_HostAddress}}/api/orders/orden-inexistente
+Accept: application/json

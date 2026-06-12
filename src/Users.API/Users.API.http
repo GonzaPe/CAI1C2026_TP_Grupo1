@@ -1,6 +1,56 @@
-@Users.API_HostAddress = http://localhost:5203
+@Users.API_HostAddress = http://localhost:5223
 
-GET {{Users.API_HostAddress}}/weatherforecast/
+# Health checks
+GET {{Users.API_HostAddress}}/health
 Accept: application/json
 
 ###
+
+GET {{Users.API_HostAddress}}/health/ready
+Accept: application/json
+
+###
+
+GET {{Users.API_HostAddress}}/health/live
+Accept: application/json
+
+###
+
+# Usuario seed. Endpoint tecnico usado por otros microservicios.
+GET {{Users.API_HostAddress}}/api/users/a1b2c3d4-0000-0000-0000-111122223333
+Accept: application/json
+
+###
+
+# Registro de usuario. Usa un email variable para evitar duplicados al repetir la prueba.
+POST {{Users.API_HostAddress}}/api/users/register
+Content-Type: application/json
+
+{
+  "nombre": "Usuario",
+  "apellido": "Demo",
+  "email": "usuario.demo.tp+{{$guid}}@example.com",
+  "password": "Password123!"
+}
+
+###
+
+# Login con usuario seed
+POST {{Users.API_HostAddress}}/api/users/login
+Content-Type: application/json
+
+{
+  "email": "maria@email.com",
+  "password": "MiPassword123!"
+}
+
+###
+
+# Prueba de error esperada: credenciales incorrectas -> 401 USR-003
+POST {{Users.API_HostAddress}}/api/users/login
+Content-Type: application/json
+
+{
+  "email": "maria@email.com",
+  "password": "PasswordIncorrecta123!"
+}

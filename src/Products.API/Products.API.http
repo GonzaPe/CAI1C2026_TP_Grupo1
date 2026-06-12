@@ -1,22 +1,47 @@
-@Products.Api_HostAddress = http://localhost:5222
+@Products.API_HostAddress = http://localhost:5222
 
-GET {{Products.Api_HostAddress}}/api/products
+# Health checks
+GET {{Products.API_HostAddress}}/health
 Accept: application/json
 
 ###
 
-GET {{Products.Api_HostAddress}}/api/products/3fa85f64-5717-4562-b3fc-2c963f66afa6
+GET {{Products.API_HostAddress}}/health/ready
 Accept: application/json
 
 ###
 
-POST {{Products.Api_HostAddress}}/api/products
+GET {{Products.API_HostAddress}}/health/live
+Accept: application/json
+
+###
+
+# Listado de productos
+GET {{Products.API_HostAddress}}/api/products
+Accept: application/json
+
+###
+
+# Producto seed
+GET {{Products.API_HostAddress}}/api/products/3fa85f64-5717-4562-b3fc-2c963f66afa6
+Accept: application/json
+
+###
+
+# Alta de producto. Usa un nombre variable para evitar duplicados al repetir la prueba.
+POST {{Products.API_HostAddress}}/api/products
 Content-Type: application/json
 
 {
-  "nombre": "Teclado mecanico",
-  "descripcion": "Teclado retroiluminado",
-  "precio": 80.50,
-  "stock": 15,
-  "categoria": "Electronica"
+  "nombre": "Producto demo TP {{$guid}}",
+  "descripcion": "Producto creado desde archivo http",
+  "precio": 99.99,
+  "stock": 12,
+  "categoria": "Demo"
 }
+
+###
+
+# Prueba de error esperada: producto inexistente -> 404 PRD-001
+GET {{Products.API_HostAddress}}/api/products/producto-inexistente
+Accept: application/json

@@ -1,6 +1,44 @@
-@Cart.API_HostAddress = http://localhost:5206
+@Cart.API_HostAddress = http://localhost:5225
 
-GET {{Cart.API_HostAddress}}/weatherforecast/
+# Health checks
+GET {{Cart.API_HostAddress}}/health
 Accept: application/json
 
 ###
+
+GET {{Cart.API_HostAddress}}/health/ready
+Accept: application/json
+
+###
+
+GET {{Cart.API_HostAddress}}/health/live
+Accept: application/json
+
+###
+
+# Carrito seed
+GET {{Cart.API_HostAddress}}/api/cart/a1b2c3d4-0000-0000-0000-111122223333
+Accept: application/json
+
+###
+
+# Agregar item al carrito.
+# Requiere Products.API levantada para validar producto y stock.
+POST {{Cart.API_HostAddress}}/api/cart/a1b2c3d4-0000-0000-0000-111122223333/items
+Content-Type: application/json
+
+{
+  "productoId": "aaaabbbb-cccc-dddd-eeee-ffff00001111",
+  "cantidad": 1
+}
+
+###
+
+# Prueba de error esperada: producto inexistente -> 404 CRT-002
+POST {{Cart.API_HostAddress}}/api/cart/a1b2c3d4-0000-0000-0000-111122223333/items
+Content-Type: application/json
+
+{
+  "productoId": "producto-inexistente",
+  "cantidad": 1
+}

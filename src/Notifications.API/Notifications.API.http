@@ -1,6 +1,46 @@
-@Notifications.API_HostAddress = http://localhost:5235
+@Notifications.API_HostAddress = http://localhost:5226
 
-GET {{Notifications.API_HostAddress}}/weatherforecast/
+# Health checks
+GET {{Notifications.API_HostAddress}}/health
 Accept: application/json
 
 ###
+
+GET {{Notifications.API_HostAddress}}/health/ready
+Accept: application/json
+
+###
+
+GET {{Notifications.API_HostAddress}}/health/live
+Accept: application/json
+
+###
+
+# Notificaciones del usuario seed
+GET {{Notifications.API_HostAddress}}/api/notifications/a1b2c3d4-0000-0000-0000-111122223333
+Accept: application/json
+
+###
+
+# Enviar notificacion.
+# Requiere Users.API levantada para validar usuario.
+POST {{Notifications.API_HostAddress}}/api/notifications/send
+Content-Type: application/json
+
+{
+  "usuarioId": "a1b2c3d4-0000-0000-0000-111122223333",
+  "mensaje": "Mensaje de prueba desde archivo http",
+  "tipo": "Email"
+}
+
+###
+
+# Prueba de error esperada: usuario inexistente -> 404 NTF-001
+POST {{Notifications.API_HostAddress}}/api/notifications/send
+Content-Type: application/json
+
+{
+  "usuarioId": "usuario-inexistente",
+  "mensaje": "Este envio debe fallar",
+  "tipo": "Email"
+}
