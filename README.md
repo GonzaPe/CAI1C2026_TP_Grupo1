@@ -1,13 +1,11 @@
-# CAI1C2026_TP_Grupo1
 Trabajo práctico de Construcción de Aplicaciones Informáticas.
-Correo de contacto: cai1c2026grupo1@gmail.com
 
-##Integrantes
+Integrantes
 - Camila Albornoz
 - Gonzalo Pérez
 - Karen Gutierrez
 
-##Estructura
+Estructura
 - src/: microservicios
 - docs/: documentación, diagrama y capturas
 

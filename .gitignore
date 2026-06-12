@@ -400,3 +400,24 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# SQLite local
+*.db
+*.db-wal
+*.db-shm
+
+# Logs generados
+**/logs/*.log
+**/logs/*.json
+!**/logs/.gitkeep
+
+# Archivos de usuario de Visual Studio
+*.user
+*.suo
+.vs/
+
+# Build
+[Bb]in/
+[Oo]bj/
+
+

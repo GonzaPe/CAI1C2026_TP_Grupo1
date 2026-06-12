@@ -1,6 +1,22 @@
-@Products.API_HostAddress = http://localhost:5222
+@Products.Api_HostAddress = http://localhost:5222
 
-GET {{Products.API_HostAddress}}/weatherforecast/
+GET {{Products.Api_HostAddress}}/api/products
 Accept: application/json
 
 ###
+
+GET {{Products.Api_HostAddress}}/api/products/3fa85f64-5717-4562-b3fc-2c963f66afa6
+Accept: application/json
+
+###
+
+POST {{Products.Api_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "nombre": "Teclado mecanico",
+  "descripcion": "Teclado retroiluminado",
+  "precio": 80.50,
+  "stock": 15,
+  "categoria": "Electronica"
+}
