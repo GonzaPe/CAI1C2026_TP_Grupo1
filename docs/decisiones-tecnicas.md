@@ -10,11 +10,11 @@ La finalidad es que el grupo pueda explicar y defender el codigo, las simplifica
 
 El proyecto prioriza una implementacion:
 
-- simple;
-- entendible;
-- defendible oralmente;
-- alineada con los documentos de la catedra;
-- consistente entre microservicios;
+- simple
+- entendible
+- defendible oralmente
+- alineada con los documentos de la catedra
+- consistente entre microservicios
 - sin patrones avanzados innecesarios.
 
 Se evita incorporar herramientas o arquitecturas que no hayan sido pedidas por el enunciado o mostradas por la catedra.
